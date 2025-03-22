@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuckline Services - Price Comparison</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="ourServices.html">Services</a></li>
+            <li><a href="../ourTeam.html">Why Us</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            <span class="cart-count">0</span>
+            🛒
+        </div>
+    </nav>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">₹0</span>
+                </div>
+                <button id="checkoutBtn" class="checkout-btn" onclick="checkout()">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header id="home" class="header">
+        <div class="container">
+            <h1>Tuckline Services</h1>
+            <p>Find and compare products across all LPU tuck shops in one place</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search products or tuck shops...">
+                    <button class="search-button">🔍</button>
+                </div>
+                <div class="filter-container">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="snacks">Snacks</option>
+                        <option value="beverages">Beverages</option>
+                        <option value="stationery">Stationery</option>
+                        <option value="toiletries">Toiletries</option>
+                        <option value="food">Food</option>
+                    </select>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section id="compare" class="price-comparison">
+            <div class="comparison-header">
+                <h2>Price Comparison</h2>
+                <button class="close-comparison">×</button>
+            </div>
+            <div id="comparisonGrid" class="comparison-grid"></div>
+            <div class="comparison-actions">
+                <button id="addToCartBtn" class="add-to-cart-btn">Add to Cart</button>
+                <button id="shareBtn" class="share-btn">Share</button>
+            </div>
+        </section>
+
+        <section id="productsGrid" class="products-grid"></section>
+
+        <div id="toast" class="toast"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section" id="top-head">
+                <h3>About Tuckline</h3>
+                <p>We're revolutionizing campus shopping by connecting all LPU tuck shops on a single platform. Compare prices, check availability, and find the best deals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="../index.html" target="_blank">Home</a></li>
+                    <li><a href="ourServices.html">Services</a></li>
+                    <li><a href="#compare">Compare Prices</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: support@tuckline.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Location: LPU Campus, Punjab</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tuckline. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
