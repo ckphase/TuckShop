@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Comparison - Tuckline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-sort {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .sort-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .shop-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #48bb78;
+            margin-bottom: 1rem;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: #4a5568;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stock-status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .in-stock {
+            background-color: #c6f6d5;
+            color: #2f855a;
+        }
+
+        .low-stock {
+            background-color: #feebc8;
+            color: #c05621;
+        }
+
+        @media (max-width: 768px) {
+            .product-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-sort {
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .best-price {
+            position: relative;
+        }
+
+        .best-price::after {
+            content: 'Best Price';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #48bb78;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nearest {
+            position: relative;
+        }
+
+        .nearest::after {
+            content: 'Nearest';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #4299e1;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="product-header">
+                <h1>Compare Prices</h1>
+                <div class="search-sort">
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search shops or locations...">
+                    </div>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="price">Sort by Price</option>
+                        <option value="distance">Sort by Distance</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="productsGrid" class="products-grid">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <script>
+        // Product data
+        let products = [
+            {
+                id: 1,
+                name: "Maggi Noodles",
+                price: 14,
+                shop: "Block 32 Shop",
+                distance: 0.2,
+                stock: 45,
+                location: "Block 32, Ground Floor"
+            },
+            {
+                id: 2,
+                name: "Maggi Noodles",
+                price: 12,
+                shop: "Girls Hostel Shop",
+                distance: 0.5,
+                stock: 30,
+                location: "GH Block, First Floor"
+            },
+            {
+                id: 3,
+                name: "Maggi Noodles",
+                price: 15,
+                shop: "Uni Mall Shop",
+                distance: 1.0,
+                stock: 100,
+                location: "University Mall"
+            },
+            {
+                id: 4,
+                name: "Maggi Noodles",
+                price: 13,
+                shop: "Boys Hostel Shop",
+                distance: 0.8,
+                stock: 25,
+                location: "BH Block, Ground Floor"
+            }
+        ];
+
+        // DOM elements
+        const productsGrid = document.getElementById('productsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+
+        // Render products
+        function renderProducts(productsToRender) {
+            productsGrid.innerHTML = '';
+            
+            // Find minimum price and distance
+            const minPrice = Math.min(...productsToRender.map(p => p.price));
+            const minDistance = Math.min(...productsToRender.map(p => p.distance));
+
+            productsToRender.forEach(product => {
+                const card = document.createElement('div');
+                card.className = `product-card ${product.price === minPrice ? 'best-price' : ''} ${product.distance === minDistance ? 'nearest' : ''}`;
+                
+                const stockStatus = product.stock < 30 ? 
+                    `<span class="stock-status low-stock">Low Stock: ${product.stock} left</span>` :
+                    `<span class="stock-status in-stock">In Stock: ${product.stock} available</span>`;
+
+                card.innerHTML = `
+                    <div class="shop-name">${product.shop}</div>
+                    <div class="price">₹${product.price.toFixed(2)}</div>
+                    <div class="details">
+                        <div class="detail-item">
+                            <span>📍 ${product.distance} km away</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>📍 ${product.location}</span>
+                        </div>
+                        <div class="detail-item">
+                            ${stockStatus}
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(card);
+            });
+        }
+
+        // Sort products
+        function sortProducts(products, criteria) {
+            return [...products].sort((a, b) => {
+                if (criteria === 'price') {
+                    return a.price - b.price;
+                } else {
+                    return a.distance - b.distance;
+                }
+            });
+        }
+
+        // Filter products
+        function filterProducts(products, query) {
+            return products.filter(product => 
+                product.shop.toLowerCase().includes(query.toLowerCase()) ||
+                product.location.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+            const filtered = filterProducts(products, e.target.value);
+            const sorted = sortProducts(filtered, sortSelect.value);
+            renderProducts(sorted);
+        });
+
+        sortSelect.addEventListener('change', (e) => {
+            const filtered = filterProducts(products, searchInput.value);
+            const sorted = sortProducts(filtered, e.target.value);
+            renderProducts(sorted);
+        });
+
+        // Initial render
+        renderProducts(sortProducts(products, 'price'));
+    </script>
+</body>
+</html>

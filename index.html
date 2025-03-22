@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Business Solutions</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('img/background-main.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            background: transparent;
+            transition: background 0.3s ease;
+            z-index: 1000;
+        }
+
+        nav.scrolled {
+            background: #1a1a1a;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hero section */
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .services {
+            background: #f9f9f9;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Why Us Section */
+        .why-us {
+            background: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .why-us-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .why-us-item i {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .why-us-item h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Team Section */
+        .team {
+            background: #f9f9f9;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-member-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-member-info h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .team-member-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #45a049;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+
+        .footer-social a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        .contact-info {
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="feedback/feedback.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <div class="hero-content">
+            <h1>Tuckline:<br>Connect, Create, Conquer</h1>
+            <p>Innovative solutions for the digital age. We help businesses grow and succeed in today's competitive market.</p>
+            <a href="ourServices/ourServices.html" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <section id="services" class="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="team-link-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Check Out Our Services</h3>
+                <p style="color: #666; margin-bottom: 25px; font-size: 1.1rem;">Discover the various accessibilities our website gives YOU.</p>
+                <a href="ourServices/ourServices.html" class="cta-button">Click NOW</a>
+            </div>
+            <div class="service-card">
+                <h3>Tuck Shop Network (First-Time in LPU)</h3>
+                <p>Bringing all LPU tuck shops onto a single platform for seamless access to products, prices, and availability.</p>
+            </div>
+            <div class="service-card">
+                <h3>Price Comparison & Availability</h3>
+                <p>Compare prices across different tuck shops in real-time and check product availability before heading out.</p>
+            </div>
+            <div class="service-card">
+                <h3>Food Section Expansion (Coming Soon)</h3>
+                <p>We are expanding our services to include food items, making it easier for you to find meals and snacks on campus.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="why-us">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="why-us-grid">
+            <div class="why-us-item">
+                <h3>First-Time Creating A Network for LPU Tuck Shops</h3>
+                <p>For the first time, we are introducing a dedicated network connecting all tuck shops across LPU.</p>
+            </div>
+            <div class="why-us-item">
+                <h3>Price Comparison</h3>
+                <p>Compare prices across all LPU tuck shops instantly. Save money by finding the best deals and never overpay again. Real-time price updates ensure you always get the best value.</p>
+            </div>
+            <div class="why-us-item">
+                <h3>One-Stop Platform</h3>
+                <p>First unified platform connecting all LPU tuck shops and food outlets. Order food and shop items from the same place. Simplified ordering process with secure payments.</p>
+            </div>
+            <div class="why-us-item">
+                <h3>Student-Focused</h3>
+                <p>Built specifically for LPU students, by students. Understanding campus life and student needs. Special student discounts and loyalty rewards program.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="why-us-grid">
+        <div class="why-us-item">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Elevate Your Experience with Tuckline – Innovation, Excellence, and Trust</h3>
+            <p style="color: #666; margin-bottom: 25px; font-size: 1.1rem;">Welcome to Tuckline, where we redefine industry standards with our cutting-edge solutions and customer-first approach. Discover our seamless workflow, innovative strategies, and why we stand out from the competition. Our interactive flowcharts and detailed process breakdown will give you a clear insight into our working methodology. Choose us for reliability, efficiency, and unparalleled service. </p>
+            <a href="whyUs.html" class="cta-button">Click Here</a>
+        </div>
+    </div>
+
+    <section id="team" class="team">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="John Smith">
+                <div class="team-member-info">
+                    <h3>Baladitya Chnadra Sai</h3>
+                    <p>Team Member</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="C:\Users\HP\Documents\five_project\img\chandanpreet-kaur.jpeg" alt="Chandanpreet Kaur">
+                <div class="team-member-info">
+                    <h3>Chandanpreet Kaur</h3>
+                    <p>CEO & Founder</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/chandanpreetkaursandhu" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/ckphase" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="img/deepali-singh.jpeg" alt="Deepali Singh">
+                <div class="team-member-info">
+                    <h3>Deepali Singh</h3>
+                    <p>Team Member</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/deepali-singh19" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/Deepali-19" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-link-section">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Want to Meet Our Extended Team?</h3>
+                <p style="color: #666; margin-bottom: 25px; font-size: 1.1rem;">Discover the talented individuals who make our vision a reality and our supporting organizations.</p>
+                <a href="ourTeam.html" class="cta-button">View Full Team</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to delivering innovative business solutions that help companies thrive in the digital age. Our expertise and commitment to excellence set us apart.</p>
+                <div class="footer-social">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="feedback/feedback.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p>Email: tucklinenetworks@gmail.com</p>
+                    <p>Phone: (+91) 1XXXX-XXXXX</p>
+                    <p>Address: Lovely Professional University<br>Phagwara, Punjab</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tuckine Business Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Reveal animations for service cards, why-us items, and team members
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .why-us-item, .team-member').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.6s ease-out';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
