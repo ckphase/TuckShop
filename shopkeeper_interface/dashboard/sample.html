@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuckline - Seller Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="hero-content">
+            <h1>Tuckline Seller Hub</h1>
+            <p>Manage your business efficiently with our powerful seller tools</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="logo">🎪 Tuckline</div>
+        <div class="nav-items">
+            <button onclick="showSection('dashboard')" class="nav-btn">📊 Dashboard</button>
+            <button onclick="showSection('products')" class="nav-btn">🎁 Products</button>
+            <button onclick="showSection('orders')" class="nav-btn">📦 Orders</button>
+            <button onclick="showSection('analytics')" class="nav-btn">📈 Analytics</button>
+        </div>
+        <div class="profile">
+            <span class="seller-name">Happy Seller</span>
+            <div class="avatar">😊</div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="dashboard" class="active">
+            <h1>Welcome back, Happy Seller! 🌟</h1>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Today's Sales</h3>
+                    <p class="stat-value">$<span id="todaySales">0</span></p>
+                    <div class="trend up">↑ 12%</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Products</h3>
+                    <p class="stat-value"><span id="activeProducts">0</span></p>
+                    <div class="trend">🎁</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending Orders</h3>
+                    <p class="stat-value"><span id="pendingOrders">0</span></p>
+                    <div class="trend">📦</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Seller Account</h3>
+                    <p class="stat-value"><span id="happyCustomers">0</span></p>
+                    <div class="trend">😊</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products">
+            <h1>Manage Products 🎁</h1>
+            <button onclick="showAddProductForm()" class="action-btn">+ Add New Product</button>
+            <div id="productForm" class="hidden">
+                <input type="text" id="productName" placeholder="Product Name">
+                <input type="number" id="productPrice" placeholder="Price">
+                <textarea id="productDescription" placeholder="Description"></textarea>
+                <button onclick="addProduct()" class="action-btn">Save Product</button>
+            </div>
+            <div id="productList" class="product-grid"></div>
+        </section>
+
+        <section id="orders">
+            <h1>Orders 📦</h1>
+            <div id="orderList" class="order-list"></div>
+        </section>
+
+        <section id="analytics">
+            <h1>Analytics 📈</h1>
+            <div class="chart-container">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Tuckline</h3>
+                <p>Empowering sellers with innovative tools to grow their business in the digital age. Join our network of successful entrepreneurs.</p>
+                <div class="footer-social">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#orders">Orders</a></li>
+                    <li><a href="#analytics">Analytics</a></li>
+                    <li><a href="#help">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Support</h3>
+                <div class="contact-info">
+                    <p>Email: support@tuckline.com</p>
+                    <p>Phone: (+91) 1XXXX-XXXXX</p>
+                    <p>Address: Lovely Professional University<br>Phagwara, Punjab</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tuckline. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
