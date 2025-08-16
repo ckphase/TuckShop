@@ -1,19 +1,3 @@
-# Minor Project - Website Prototype  
-
-This repository contains **static pages** created for the minor project.  
-These pages are intended to **showcase the appearance and layout** of the website (UI/UX design) without backend functionality.  
-
----
-
-## Interfaces  
-
-- **Customer Interface**: [Click here](https://ckphase.github.io/TuckShop/customer_interface/index.html)  
-- **User Interface**: [Click here](https://ckphase.github.io/TuckShop/shopkeeper_interface/index.html)  
-
----
-
-## Note  
-These are prototype pages meant for demonstration purposes only. Functionality and dynamic features will be implemented in future versions.  
 # Minor Project – Website Prototype  
 
 This repository presents the **static prototype pages** developed for the Minor Project.  
@@ -24,8 +8,8 @@ They serve as a preview of the final system, focusing on user interface design r
 
 ## Interfaces  
 
-- **Customer Interface**: [View Here](your-customer-interface-link)  
-- **User Interface**: [View Here](your-user-interface-link)  
+- **Customer Interface**: [Click here](https://ckphase.github.io/TuckShop/customer_interface/index.html)  
+- **User Interface**: [Click here](https://ckphase.github.io/TuckShop/shopkeeper_interface/index.html)  
 
 ---
 
